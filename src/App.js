@@ -1,8 +1,10 @@
+import Container from "./components/Login/Container/Container";
+
 function App() {
   return (
-    <div>
-      <h1>Hello</h1>
-    </div>
+    <>
+      <Container />
+    </>
   );
 }
 

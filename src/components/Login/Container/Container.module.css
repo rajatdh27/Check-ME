@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  color: rgba(0, 0, 0, 0.564);
+  font-weight: 600;
+  background-color: #211522;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  font-size: 1rem;
+}
+
+.container .card {
+  height: auto;
+  background-color: white;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+}
+
+.container .card .form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  gap: 0.1rem;
+  min-width: 250px;
+}
+
+.container .card .form .title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.container .card .form .inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+
+.container .card .form input {
+  font-size: 1rem;
+  padding: 2px 0px;
+  margin-bottom: 5px;
+  display: block;
+  width: 100%;
+  color: black;
+  border: none;
+  border-bottom: 1px solid #515151;
+  background: transparent;
+}
+
+.container .card .form input:focus {
+  outline-color: rgba(0, 0, 0, 0.267);
+}
+
+.container .card .form .buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.7rem;
+  margin-bottom: 0.2rem;
+  width: 100%;
+}
+
+.container .card .form .buttonContainer .button {
+  width: 50%;
+}
