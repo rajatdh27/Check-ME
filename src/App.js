@@ -1,10 +1,11 @@
-import Container from "./components/Login/Container/Container";
+import Container from "./components/Container/Container";
+import SignUp from "./components/SignUp/SignUp";
 
 function App() {
   return (
-    <>
-      <Container />
-    </>
+    <Container>
+      <SignUp />
+    </Container>
   );
 }
 
