@@ -30,6 +30,7 @@ function Card(props) {
         };
       });
     } else {
+      props.dataHandler(props.data);
       setErrorState((prevState) => {
         return {
           ...prevState,

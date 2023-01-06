@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import Card from "../Card/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-function SignUp() {
+function SignUp(props) {
   const icons = {
     open: faEye,
     close: faEyeSlash,
@@ -61,8 +61,12 @@ function SignUp() {
       };
     });
   };
+  const dataHandler = (data) => {
+    props.dataManipulation(data);
+    console.log("data in sign up", data);
+  };
   return (
-    <Card name="Sign Up" data={userInput}>
+    <Card name="Sign Up" data={userInput} dataHandler={dataHandler}>
       <div className={styles.inputs}>
         <div className={styles.inputContainer}>
           <label>Name:</label>

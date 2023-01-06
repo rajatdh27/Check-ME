@@ -1,65 +1,53 @@
-.invalid {
-  background-color: #d3b1c288;
-  color: white;
-  margin-bottom: 1rem;
-  width: 400px;
-  padding-right: 1rem;
-  padding-left: 1rem;
-  text-align: center;
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.75);
+  font: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.card {
+
+.container .card {
   width: 400px;
   background-color: white;
   border-radius: 5px;
   padding: 1rem 1.1rem;
   font-size: 1.2rem;
   color: rgba(0, 0, 0, 0.564);
+  z-index: 100;
 }
 
-.card .form {
+.container .card .data {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  gap: 0.5rem;
   width: 100%;
-  gap: 0.1rem;
-}
-
-.card .form .title {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 1rem;
 }
 
 @media (max-width: 450px) {
-  .card {
+  .container .card {
     width: 350px;
     font-size: 1rem;
-  }
-  .card {
     padding: 1rem 1rem;
-  }
-  .invalid {
-    width: 350px;
   }
 }
 
 @media (max-width: 385px) {
-  .card {
-    width: 300px;
-  }
-  .invalid {
+  .container .card {
     width: 300px;
   }
 }
 
 @media (max-width: 335px) {
   .card {
-    width: 280px;
-  }
-  .invalid {
     width: 280px;
   }
 }
