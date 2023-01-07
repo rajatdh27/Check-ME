@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import Container from "./components/Container/Container";
+import { Routes, Route } from "react-router-dom";
 import DataCard from "./components/DataCard/DataCard";
+import Login from "./components/Login/Login";
+import Navbar from "./components/Navbar/Navbar";
 import SignUp from "./components/SignUp/SignUp";
 
 function App() {
@@ -17,11 +19,32 @@ function App() {
       return !prevState;
     });
   };
+
   return (
-    <Container>
-      {!toggle ? <DataCard data={data} /> : ""}
-      <SignUp dataManipulation={dataHandler} />
-    </Container>
+    <>
+      <Navbar />
+      <Routes>
+        <Route
+          exact
+          path="/signin"
+          element={
+            <>
+              {!toggle ? <DataCard data={data} /> : ""}
+              <SignUp dataManipulation={dataHandler} />
+            </>
+          }
+        />
+        <Route
+          exact
+          path="/login"
+          element={
+            <>
+              <Login />
+            </>
+          }
+        />
+      </Routes>
+    </>
   );
 }
 

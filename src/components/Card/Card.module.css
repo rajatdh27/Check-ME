@@ -14,6 +14,7 @@
   padding: 1rem 1.1rem;
   font-size: 1.2rem;
   color: rgba(0, 0, 0, 0.564);
+  box-shadow: #c197d22d 0px 14px 28px, #c197d223 0px 10px 10px;
 }
 
 .card .form {
