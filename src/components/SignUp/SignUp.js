@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
+import dataServices from "../../services/dataServices";
+import { auth } from "../../firebaseConfig";
 import styles from "./SignUp.module.css";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 function SignUp(props) {
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  }, []);
   const icons = {
     open: faEye,
     close: faEyeSlash,
@@ -13,6 +24,8 @@ function SignUp(props) {
     passwordToggle: false,
     confirmPasswordToggle: false,
   });
+  const [userT, setUser] = useState({});
+
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
@@ -20,6 +33,25 @@ function SignUp(props) {
     password: "",
     confirmPassword: "",
   });
+
+  const register = async () => {
+    console.log("register");
+    try {
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        userInput.email,
+        userInput.password
+      );
+      console.log("usr !", userT);
+      // onAuthStateChanged(auth, (currentUser) => {
+      //   setUser(currentUser);
+      // });
+      console.log(user.user.uid);
+      await dataServices.setData(user.user.uid, userInput);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   const nameHandler = (e) => {
     setUserInput((prevInput) => {
       return { ...prevInput, name: e.target.value };
@@ -63,10 +95,15 @@ function SignUp(props) {
   };
   const dataHandler = (data) => {
     props.dataManipulation(data);
-    console.log("data in sign up", data);
+    console.log(auth);
   };
   return (
-    <Card name="Sign Up" data={userInput} dataHandler={dataHandler}>
+    <Card
+      name="Sign Up"
+      data={userInput}
+      dataHandler={dataHandler}
+      userCreationHandler={register}
+    >
       <div className={styles.inputs}>
         <div className={styles.inputContainer}>
           <label>Name:</label>
@@ -128,6 +165,7 @@ function SignUp(props) {
       <div className={styles.buttonContainer}>
         <div className={styles.button}>
           <Button buttonName="Sign Up" />
+          {userT ? userT.email : ""}
         </div>
       </div>
     </Card>

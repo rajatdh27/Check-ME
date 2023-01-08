@@ -30,7 +30,7 @@ function Card(props) {
         };
       });
     } else {
-      props.dataHandler(props.data);
+      props.userCreationHandler();
       setErrorState((prevState) => {
         return {
           ...prevState,

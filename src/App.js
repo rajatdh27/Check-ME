@@ -9,6 +9,7 @@ function App() {
   const [toggle, setToggle] = useState(true);
   const [data, setData] = useState({});
   const dataHandler = (data) => {
+    console.log("Data");
     setData((prevState) => {
       return {
         ...prevState,
@@ -29,7 +30,7 @@ function App() {
           path="/signin"
           element={
             <>
-              {!toggle ? <DataCard data={data} /> : ""}
+              {/* {!toggle ? <DataCard data={data} /> : ""} */}
               <SignUp dataManipulation={dataHandler} />
             </>
           }

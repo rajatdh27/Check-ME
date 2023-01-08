@@ -17,24 +17,21 @@ function Navbar() {
   };
   const [toggle, setToggle] = useState(false);
   const dropDownHandler = () => {
-    setToggle((prevState) => {
-      return !toggle;
-    });
+    setToggle(!toggle);
   };
   return (
     <div className={styles.navbar}>
       <h1>Check Me</h1>
       <div className={styles.items}>
-        {/* <h2>Sign Up</h2>
-        <h2>Login In</h2> */}
         <div className={styles.iconContainer}>
           <FontAwesomeIcon
             icon={faUserNinja}
             className={styles.icon}
             onClick={dropDownHandler}
+            ref={refIcon}
           />
           {toggle ? (
-            <div className={styles.dropdown} ref={refIcon}>
+            <div className={styles.dropdown}>
               <Link to="/signin" className={styles.link}>
                 <p>Sign In</p>
               </Link>
