@@ -5,7 +5,7 @@ function Card(props) {
     invalid: false,
     message: "",
   });
-  const submitHandler = (e) => {
+  const submitHandlerSignIn = (e) => {
     e.preventDefault();
     if (
       props.data.name.trim().length === 0 ||
@@ -40,6 +40,11 @@ function Card(props) {
       });
     }
   };
+  const submitHandlerLogin = (e) => {
+    e.preventDefault();
+    props.login();
+    console.log(props.data);
+  };
   return (
     <>
       {errorState.invalid ? (
@@ -50,7 +55,12 @@ function Card(props) {
         ""
       )}
       <div className={styles.card}>
-        <form className={styles.form} onSubmit={submitHandler}>
+        <form
+          className={styles.form}
+          onSubmit={
+            props.name === "Login" ? submitHandlerLogin : submitHandlerSignIn
+          }
+        >
           <div className={styles.title}>
             <h1>{props.name}</h1>
           </div>

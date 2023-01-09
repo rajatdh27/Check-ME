@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import dataServices from "../../services/dataServices";
 import { auth } from "../../firebaseConfig";
 import styles from "./SignUp.module.css";
@@ -11,9 +12,14 @@ import Card from "../Card/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 function SignUp(props) {
+  const navigate = useNavigate();
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      if (currentUser) {
+        console.log(currentUser);
+        props.userHandler(currentUser);
+        navigate("/");
+      }
     });
   }, []);
   const icons = {
@@ -24,8 +30,6 @@ function SignUp(props) {
     passwordToggle: false,
     confirmPasswordToggle: false,
   });
-  const [userT, setUser] = useState({});
-
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
@@ -42,10 +46,6 @@ function SignUp(props) {
         userInput.email,
         userInput.password
       );
-      console.log("usr !", userT);
-      // onAuthStateChanged(auth, (currentUser) => {
-      //   setUser(currentUser);
-      // });
       console.log(user.user.uid);
       await dataServices.setData(user.user.uid, userInput);
     } catch (error) {
@@ -165,7 +165,6 @@ function SignUp(props) {
       <div className={styles.buttonContainer}>
         <div className={styles.button}>
           <Button buttonName="Sign Up" />
-          {userT ? userT.email : ""}
         </div>
       </div>
     </Card>

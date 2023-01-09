@@ -6,8 +6,15 @@ import Navbar from "./components/Navbar/Navbar";
 import SignUp from "./components/SignUp/SignUp";
 
 function App() {
-  const [toggle, setToggle] = useState(true);
+  const [changeIcon, setChangeIcon] = useState(false);
+  const [uid, setUid] = useState(null);
   const [data, setData] = useState({});
+  const userHandler = (data) => {
+    setData(data);
+    setUid(data.uid);
+    setChangeIcon(true);
+    console.log(data.uid, "uid");
+  };
   const dataHandler = (data) => {
     console.log("Data");
     setData((prevState) => {
@@ -16,22 +23,27 @@ function App() {
         ...data,
       };
     });
-    setToggle((prevState) => {
-      return !prevState;
-    });
+  };
+  const userSignOutHandler = () => {
+    setData({});
+    setUid(null);
+    setChangeIcon(false);
   };
 
   return (
     <>
-      <Navbar />
+      <Navbar icon={changeIcon} signOut={userSignOutHandler} />
       <Routes>
+        <Route exact path="/" element={<DataCard data={data} />} />
         <Route
           exact
           path="/signin"
           element={
             <>
-              {/* {!toggle ? <DataCard data={data} /> : ""} */}
-              <SignUp dataManipulation={dataHandler} />
+              <SignUp
+                dataManipulation={dataHandler}
+                userHandler={userHandler}
+              />
             </>
           }
         />
@@ -40,7 +52,7 @@ function App() {
           path="/login"
           element={
             <>
-              <Login />
+              <Login userHandler={userHandler}/>
             </>
           }
         />
