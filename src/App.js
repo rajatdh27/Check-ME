@@ -32,6 +32,14 @@ function App() {
 
   return (
     <>
+      <section>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </section>
       <Navbar icon={changeIcon} signOut={userSignOutHandler} />
       <Routes>
         <Route exact path="/" element={<DataCard data={data} />} />
@@ -52,7 +60,7 @@ function App() {
           path="/login"
           element={
             <>
-              <Login userHandler={userHandler}/>
+              <Login userHandler={userHandler} />
             </>
           }
         />
